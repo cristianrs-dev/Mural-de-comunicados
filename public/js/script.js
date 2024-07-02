@@ -59,11 +59,11 @@ function atualizarMural(){
             posts.forEach((post,indice) => {
                 
                 cardId.innerHTML+=`
-                <div id="card" class="d-flex justify-content-center card card-body" >
-                    <h5 id="titulo_descricao" class="card-title card-header">${post.titulo}</h5>
+                <div id="card" class="d-flex justify-content-center m-1 card col-lg-3" >
+                    <h5 id="titulo_descricao" class="card-title card-header">${indice}-${post.titulo}</h5>
                     <p id = "corpo_descricao" class="card-text card-body">${post.descricao}</p>
                     <div class="d-flex justify-content-end">
-                        <a href="#" onclick="atualizarPost(${indice});modal()" class="btn btn-secondary m-1 col-4">editar</a>
+                        <a href="#" onclick="modal();backModal()" class="btn btn-secondary m-1 col-4">editar</a>
                         <a href="#" onclick="deletarPost(${indice})" class="btn btn-danger m-1 col-4">apagar</a>
                     </div>
                 </div>
@@ -99,10 +99,14 @@ function deletarPost(indice){
 }
 
 function atualizarPost(indice){
+    let titulo =document.getElementById("tituloModal").value
+    let descricao = document.getElementById("descricaoModal").value
     let url = `http://localhost:3000/api/atualizar/${indice}`
+    let post={titulo,descricao}
     fetch(url,{
         method:'PUT',
-        headers:{'Content-type':'application/json'}
+        headers:{'Content-type':'application/json'},
+        body:JSON.stringify(post)
 
     })
     .then((res)=>{
@@ -110,6 +114,7 @@ function atualizarPost(indice){
     })
     .then((data)=>{
         console.log(`post atualizado${data}`)
+        atualizarMural()
     })
 }
 
@@ -119,7 +124,7 @@ function modal(){
     let modal = document.getElementById("meuModal")
     modal.style.display='block'
   }
-  function fechar(){
+  function fecharModal(){
     let modal = document.getElementById("meuModal")
     modal.style.display='none'
   }
