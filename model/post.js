@@ -44,7 +44,7 @@
                 titulo:titulo,
                 descricao:descricao
         }
-        this.posts.push(post)
+        this.posts.splice(indice,1,post)
     }
 }
 
