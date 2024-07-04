@@ -13,14 +13,16 @@
 </style>
 <body class="d-flex flex-column justify-content-center">
       <div class=" d-flex justify-content-center">
-            <form class="col-4 mt-5">
+     
+            <form class="col-4 mt-5 card p-5 needs-validation">
+              <p class="text-center text-uppercase">Mural de Recados</p>
               <div class=" mb-3">
-                <label  class="form-label">titulo</label>
-                <input type="text" name="titulo" class="form-control" id="titulo" aria-describedby="emailHelp">
+                <label  class="form-label">título</label>
+                <input type="text" name="titulo" class="form-control" id="titulo" aria-describedby="emailHelp" required>
               </div>
               <div class="mb-3">
                 <label class="form-label">descricao</label>
-                <input type="text" name="descricao" class="form-control" id="descricao">
+                <input type="text" name="descricao" class="form-control" id="descricao" required>
               </div>
               <button type="submit" class="btn btn-primary" onclick="cadastrar()">cadastrar</button>
             </form>
@@ -43,14 +45,14 @@
 
         <div class="modal pt-5" tabindex="-1" id="meuModal">
           <div class="row max-auto d-flex justify-content-center"> 
-            <form class="col-4 mt-5 card p-5">
+            <form class="col-4 mt-5 card p-5 needs-validation">
               <div class=" mb-3">
                 <label  class="form-label">titulo</label>
-                <input type="text" name="titulo" class="form-control" id="tituloModal">
+                <input type="text" name="titulo" class="form-control" id="tituloModal" required>
               </div>
               <div class="mb-3">
                 <label class="form-label">descricao</label>
-                <input type="text" name="descricao" class="form-control" id="descricaoModal">
+                <input type="text" name="descricao" class="form-control" id="descricaoModal" required>
               </div>
               <button type="submit" class="btn btn-success" onclick="atualizarPost()">confirmar</button>
               <button type="submit" class="btn btn-danger" onclick="fecharModal()">fechar</button>

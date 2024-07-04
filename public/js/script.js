@@ -9,20 +9,24 @@ function cadastrar(){
     let descricao = document.getElementById("descricao").value
     let post = {titulo,descricao}
 
+    if(!validarCampos()){
+        alert("cmapos precisam ser preenchidos")
+    }else{
+
     let url = 'http://localhost:3000/api/new'
     let options = { method:"POST", headers:{'Content-Type':'application/json'}, body:JSON.stringify(post)}
 
-    fetch(url,options)
-        .then((res)=>{
-          
-            return res.json();
-        })
-        .then((data)=>{
-            console.log(data.titulo)
-            atualizarMural()
-        })
+        fetch(url,options)
+            .then((res)=>{
+            
+                return res.json();
+            })
+            .then((data)=>{
+                console.log(data.titulo)
+                atualizarMural()
+            })
         
-     
+    }
 }
       
 function atualizarMural(){
@@ -92,22 +96,25 @@ function atualizarPost(indice){
     let titulo =document.getElementById("tituloModal").value
     let descricao = document.getElementById("descricaoModal").value
     let post={titulo,descricao}
-
-    let url = `http://localhost:3000/api/atualizar/${indice}`
-    let options = {method:'PUT',headers:{'Content-type':'application/json'},body:JSON.stringify(post)}
+    if(!validarCampos()){
+        alert("cmapos precisam ser preenchidos")
+    }else{
+        let url = `http://localhost:3000/api/atualizar/${indice}`
+        let options = {method:'PUT',headers:{'Content-type':'application/json'},body:JSON.stringify(post)}
     
-    fetch(url,options)
-    .then((res)=>{
-        console.log(`erro na requisição${res}`)
-        return res.json()
-    })
-    .then((data)=>{
-        console.log(`post atualizado${data}`)
-        let posts = data
-        posts.titulo[indice] = titulo
-        posts.descricao[indice] = descricao
-        atualizarMural()
-    })
+        fetch(url,options)
+        .then((res)=>{
+            console.log(`erro na requisição${res}`)
+            return res.json()
+        })
+        .then((data)=>{
+            console.log(`post atualizado${data}`)
+            let posts = data
+            posts.titulo[indice] = titulo
+            posts.descricao[indice] = descricao
+            atualizarMural()
+        })
+    }
 }
 
 
@@ -126,4 +133,16 @@ function modal(){
     modal.classList.add("custom-modal-backdrop")
   }
   
-  alert("em fase de desenvolvimento")
+  function validarCampos(){
+    let titulo =document.getElementById("titulo").value.trim()
+    let descricao = document.getElementById("descricao").value.trim()
+    let valido = true
+    if(titulo === ''){
+        
+       return valido = false
+    }else if(descricao === ''){
+       
+      return valido = false
+    }
+    return valido
+  }
