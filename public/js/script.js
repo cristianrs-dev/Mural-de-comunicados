@@ -91,14 +91,13 @@ function deletarPost(indice){
 }
 
 function atualizarPost(indice){
-    console.log(`indice dentro da funcao atualizar post ${indice}`)
-    console.log(typeof(indice))
+
     let titulo =document.getElementById("tituloModal").value
     let descricao = document.getElementById("descricaoModal").value
     let post={titulo,descricao}
-    if(!validarCampos()){
-        alert("cmapos precisam ser preenchidos")
-    }else{
+
+   
+
         let url = `http://localhost:3000/api/atualizar/${indice}`
         let options = {method:'PUT',headers:{'Content-type':'application/json'},body:JSON.stringify(post)}
     
@@ -114,7 +113,7 @@ function atualizarPost(indice){
             posts.descricao[indice] = descricao
             atualizarMural()
         })
-    }
+    
 }
 
 
@@ -139,10 +138,10 @@ function modal(){
     let valido = true
     if(titulo === ''){
         
-       return valido = false
+        valido = false
     }else if(descricao === ''){
        
-      return valido = false
+        valido = false
     }
     return valido
   }
